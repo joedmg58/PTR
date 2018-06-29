@@ -5,18 +5,18 @@
 var userLoginBtn = '#'; // Id of the User login button
 var adminLoginBtn = '#'; //Id of the Admin login button
 
-var fbDatabaseName = 'ptrdb-joedmg58';
+var fbDatabaseName = 'ptrdb-jld03e';
 
 $(document).ready( function(){
     
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyA7edVoCp46Jh6AEe3dwGkhQoM5yS0uazM", //change later for Joseph apiKey
+    apiKey: "AIzaSyBcDa7GD5WZ6M3CYC9l40e7RLgAdI2d3Es", //updaed by Jose
     authDomain: fbDatabaseName + ".firebaseapp.com",
-    databaseURL: "https://ptrdb-joedmg58.firebaseio.com",
+    databaseURL: "https://ptrdb-jld03e.firebaseio.com",
     projectId: fbDatabaseName,
     storageBucket: fbDatabaseName + ".appspot.com",
-    messagingSenderId: "254791034902" //change later for Joseph messagingSenderId
+    messagingSenderId: "226505053419" //updated by Jose.
   };
   firebase.initializeApp(config);
 
