@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // PTR: Parking Ticket Reimbursment App
 // Project #1. UM Coding Boot CAmp 2018.
 
@@ -27,3 +28,5 @@ $(document).ready( function(){
   
 
 });
+=======
+>>>>>>> 14ffc2ebbdfb2b56e10900c50e43262d7551970b
