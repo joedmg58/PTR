@@ -14,38 +14,55 @@
 </head>
 <body>
 
-    <div class="container">
+  <div class="container">
     
-      <h1>Login</h1>
-        <!--buttton content-->
-    
-        <!--login header-->
-        <div class="table">
-          <div class="col-lg-12">
-            <div class="col s6">
-    
-              <!-- Dropdown Trigger -->
-              <a class="dropdown-trigger btn" href="#" data-target="userDrop">Users</a>
-    
-              <!-- Dropdown Structure -->
-              <ul id="userDrop" class="dropdown-content">
-                <li><a href="#!"><i class="material-icons">account_box</i>User1</a></li>
-                <li><a href="#!"><i class="material-icons">account_box</i>User2</a></li>
-                <li><a href="#!"><i class="material-icons">account_box</i>User3</a></li>
-              </ul>
-    
-              <!-- Dropdown Trigger -->
-              <a class="dropdown-trigger btn" href="#" data-target="userDrop">Admins</a>
-              <!-- Dropdown Structure -->
-              <ul id="userDrop" class="dropdown-content">
-                <li><a href="#!"><i class="material-icons">account_circle</i>Admin1</a></li>
-                <li><a href="#!"><i class="material-icons">account_circle</i>Admin2</a></li>
-              </ul>
-    
-            </div> 
+    <h1>Login Screen</h1>
+
+    <!--user buttton content-->
+    <div class="table">
+
+      <div class="col-lg-12">
+
+        <!--User button-->
+        <div class="dropdown">
+
+          <button onclick="myFunction()" class="dropbtn">User Login</button>
+
+            <div id="myDropdown" class="dropdown-content">
+
+              <a href="#u1">User 1</a>                      
+              <a href="#u2">User 2</a>                    
+              <a href="#u3">User 3</a>
+
+            </div>
+
           </div>
+
         </div>
+
+        <!--Admin button-->
+
+        <div class="dropdown">
+
+          <button onclick="myFunction()" class="dropbtn">Admin Login</button>
+  
+            <div id="myDropdown" class="dropdown-content">
+  
+              <a href="#a1">Admin 1</a>                      
+              <a href="#a2">Admin 2</a>                    
+  
+            </div>
+            
+          </div>
+
+        </div>
+
+
       </div>
+      
+    </div>
+
+  </div>
 
 
 
