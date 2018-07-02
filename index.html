@@ -4,71 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Link to CSS Sheet -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Link to Materialize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
   <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  <script type = "text/javascript"
+    src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+  </script> 
   <title>PTR</title>
 </head>
 <body>
 
-  <div class="container">
-    
-    <div id="title"><h1>Login Screen</h1></div>
+    <!--Navbar-->
+    <nav class="blue">
+      <div class="navbar-wrapper container">
 
-    <!--user buttton content-->
-    <div class="table">
-
-      <div class="col-lg-12">
-
-        <!--User button-->
-        <div class="dropdown">
-
-          <button onclick="myFunction()" class="dropbtn">User Login</button>
-
-            <div id="myDropdown" class="dropdown-content">
-
-              <a href="#u1">User 1</a>                      
-              <a href="#u2">User 2</a>                    
-              <a href="#u3">User 3</a>
-
-            </div>
-
-          </div>
-
-        </div>
-
-        <!--Admin button-->
-
-        <div class="dropdown">
-
-          <button onclick="myFunction()" class="dropbtn">Admin Login</button>
-  
-            <div id="myDropdown" class="dropdown-content">
-  
-              <a href="#a1">Admin 1</a>                      
-              <a href="#a2">Admin 2</a>                    
-  
-            </div>
-            
-          </div>
-
-        </div>
-
+        <a href="#" class="brand-logo">PTR</a>
 
       </div>
-      
-    </div>
+  </nav>
 
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m12 l12 center-align">
+                  
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button btn' href='#' data-target='dropdown-button'>Users</a>    
+
+      </div>
+    </div>
   </div>
 
 
 
 
-  <!-- Link to JS Sheet -->
-  <script type="text/javascript" src="assets/js/app.js"></script>
+  <!-- Dropdown Structure for User -->
+  <ul id='dropdown-button' class='dropdown-content'>      
+    <li><a href="user.html"><i class="material-icons">account_circle</i>User1</a></li>
+    <li><a href="user.html"><i class="material-icons">account_circle</i>Use2</a></li>
+    <li><a href="user.html"><i class="material-icons">account_circle</i>User3</a></li>
+  </ul>
+
+  
+  <script>
+    $('.dropdown-button').dropdown();
+  </script>
+  
+
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+
+
+
+
   <!-- Link to jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <!-- Moment JS -->
