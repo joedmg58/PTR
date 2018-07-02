@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,17 +9,79 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Link to Materialize -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-  <title>Document</title>
+  <title>PTR | User Page</title>
 </head>
+
 <body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col l12">
+        <div class="row">
+          <div class="col l12 m6">
+            <div class="card">
+              <div class="card-content">
+                <span class="card-title responsive-table" id="userName"><strong>User Name</strong></span>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Check-In</th>
+                      <th>Check-Out</th>
+                      <th>Location</th>
+                      <th>Rate</th>
+                      <th>Total Hours</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td>Check-In D&T</td>
+                      <td>Check-Out D&T</td>
+                      <td>FAU Parking Garage</td>
+                      <td>$3/hr</td>
+                      <td>8</td>
+                      <td>Approved</td>
+                    </tr>
+                    <tr>
+                      <td>Check-In D&T</td>
+                      <td>Check-Out D&T</td>
+                      <td>UM Coral Gables Parking</td>
+                      <td>$5.25/hr</td>
+                      <td>4</td>
+                      <td>Pending</td>
+                    </tr>
+                    <tr>
+                      <td>Check-In D&T</td>
+                      <td>Check-Out D&T</td>
+                      <td>Miami International Airport</td>
+                      <td>$3.50/hr</td>
+                      <td>2</td>
+                      <td>Disapproved</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+              </div>
+              <div class="card-action">
+                <a class="waves-effect waves-light btn" href="#">Add Ticket</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- Link to JS Sheet -->
   <script type="text/javascript" src="assets/js/app.js"></script>
   <!-- Link to jQuery -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
   <!-- Moment JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
   <!-- Firebase -->
- <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.1.0/firebase.js"></script>
 </body>
+
 </html>
