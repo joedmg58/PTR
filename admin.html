@@ -56,40 +56,64 @@
             <div id="tickets" class="col s12">
 
                 <!-- Dropdown Trigger -->
-                <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Drop Me!</a>
+                <a id="ddSelectUser" class='dropdown-trigger btn' href='#' data-target='selectUserAdmin'>Select user</a>
 
                 <!-- Dropdown Structure -->
-                <ul id='dropdown1' class='dropdown-content'>
-                    <li><a href="#!">one</a></li>
-                    <li><a href="#!">two</a></li>
-                    <li class="divider" tabindex="-1"></li>
-                    <li><a href="#!">three</a></li>
-                    <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
-                    <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+                <ul id='selectUserAdmin' class='dropdown-content'>
+                    <!-- insert data from firebase -->
                 </ul>
 
             </div> <!-- end of tab tickets -->
 
             <!-- This is the tab for showing the map -->
             <div id="places" class="col s12">
-                    <div id="adminMap"></div>
-                    <p>Click on the map to create a Job Site marker</p>
-                    <p><a class="waves-effect waves-light btn modal-trigger" href="#addPlaceModal">Add place</a></p>
+                
+                <h5>Click on the map to create a Job Site marker</h5>
+
+                <form class="row">
+                    <div class="input-field col s10">
+                        <label for="searchPlace">Street address</label>
+                        <input id="searchPlace" placeholder="Enter a street address to find a place" type="text">
+                    </div>
+                    <div class="col s2">
+                        <a class="waves-effect waves-light btn">Search</a>
+                    </div>
+                </form>
+                <!-- <p><a class="waves-effect waves-light btn modal-trigger" href="#addPlaceModal">Add place</a></p> -->
+
+                <!-- this div is the map holder -->
+                <div id="adminMap"></div>
+
             </div> <!-- end of tab places -->
 
         </div> <!-- end of row -->
     </div> <!-- end of container -->
 
 
+    <!-- Modal for editing / deleting places (markers) -->
+    <div id="editPlaceModal" class="modal" result="cancel" place-name="">
+        <div class="modal-content">
+            <h3>Edit or delete this place</h3>
+            <label for="placeEditModal">Job site name</label>
+            <input id="placeEditModal" type="text">
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="$('#editPlaceModal').attr('result', 'cancel')">Cancel</a>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="$('#editPlaceModal').attr('result', 'delete')">Delete</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="$('#editPlaceModal').attr('result', 'ok')">Modify</a>
+        </div>
+    </div>
+
+
     <!-- Modal dlg for adding places -->
-    <div id="addPlaceModal" class="modal">
+    <div id="addPlaceModal" class="modal" result="cancel" lat="" lon="">
         <div class="modal-content">
             <label for="placeNameModal">Job site name</label>
             <input id="placeNameModal" type="text">
         </div>
         <div class="modal-footer">
-            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
-            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Add</a>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="$('#addPlaceModal').attr('result', 'cancel')">Cancel</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="$('#addPlaceModal').attr('result', 'ok')">Add</a>
         </div>
     </div> <!-- end of addPlaceModal -->
     
@@ -129,7 +153,8 @@
         </form> <!-- end of form -->
     </div> <!-- end of modal add user -->
 
-
+    
+    
 
     <!-- <div>
         <button id="addPlaceBtn" type="button">Add place</button>
