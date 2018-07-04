@@ -21,7 +21,7 @@
                       <div class="col l12 m6">
                         <div class="card">
                           <div class="card-content">
-                            <span class="card-title responsive-table" id="userName"><strong>User Name</strong></span>
+                            <span class="card-title responsive-table" id="userName"></span>
                             <table>
                               <thead>
                                 <tr>
@@ -63,7 +63,7 @@
                             </table>
                           </div>
                           <div class="card-action">
-                            <a class="waves-effect waves-light btn" href="#">Add Ticket</a>
+                            <a id='addTicketId' class="waves-effect waves-light btn" href="#">Add Ticket</a>
                           </div>
                         </div>
                       </div>
@@ -72,6 +72,47 @@
                 </div>
               </div>
 
+
+    <!-- Modal for adding ticket -->
+    <div id="addTicketModal" class="modal">
+            <div id="datetime-container"></div>
+            <form class="modal-content">
+                <h4>Add ticket:</h4>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <label for="ticket_startDate">Start Date</label>
+                        <input id="ticket_startDate" type="text" class="datepicker">
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="ticket_startTime" type="text" class="timepicker">
+                        <label for="ticket_startTime">Start Time</label>
+                    </div>
+                </div> <!-- end of row 1 -->
+                <div class="row">
+                        <div class="input-field col s6">
+                            <label for="ticket_stopDate">Stop Date</label>
+                            <input id="ticket_stopDate" type="text" class="datepicker">
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="ticket_stopTime" type="text" class="timepicker">
+                            <label for="ticket_stopTime">Stop Time</label>
+                        </div>
+                    </div> <!-- end of row 2 -->
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input disabled id="ticket_rate" type="text" value="2.00"> <!-- this is a sample value, we need to get this from parkwiz api-->
+                        <label for="ticket_rate">Parking rate ($ x h)</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input  disabled id="ticket_location" type="text" value="sample place name"> <!-- this is a sample value, we need to get this from google geolocation api-->
+                        <label for="ticket_location">Location</label>
+                    </div>    
+                </div> <!-- end of third row -->
+                <div class="modal-footer">
+                    <button id="addTicketBtn" type="button" class="btn-floating modal-close"><i class="material-icons">add</i></button>
+                </div> <!-- end of 3rd row -->
+            </form> <!-- end of form -->
+        </div> <!-- end of modal add user -->              
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
