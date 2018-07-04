@@ -81,36 +81,7 @@ function addPlace( name, coordinates ) {
     fbPtrDb.ref('places/').push( place );
 }
 
-//managing onclick event for addTicket button
-function addTicketBtnClick( e ) {
-    console.log( 'Add ticket button clicked' );
 
-    var place = {
-        name: 'Prueba',
-        coordinates: {'lat':'25.7230019', 'long':'-80.2784722'}
-    }
-
-    var now = moment().format('MM/DD/YYYY hh:mm a');
-
-    addTicket( 'Peter Brown', now , place );
-}
-
-//function for adding ticket
-function addTicket( userName, startDate, place ) {
-    console.log('Adding ticket to user...');
-
-    var ticket = {
-        ticketStartDate: startDate,
-        ticketStopDate: '',
-        ticketPlace: place,
-        ticketRate: '',         //obtain this value from parking API
-        ticketAproved: 'false',
-        ticketPreAproved: 'false'
-    }
-
-
-    fbPtrDb.ref( 'tickets/'+userName+'/' ).push( ticket );
-}
 
 //managing oclick venet for get location button
 function getLocationBtnClick() {
@@ -184,26 +155,7 @@ function showPosition( position ) {
             lat: e.latLng.lat(),
             lon: e.latLng.lng()
         });
-
-        /* 
-        //Create and show marker
-        var marker = new google.maps.Marker({
-            position: e.latLng,
-            map: tmpMap, //map,
-            title: 'place',
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png', //'assets/images/jobsite.png',
-            animation: google.maps.Animation.DROP
-        });
-
-        //Adjust centering of the map
-        bound.extend( e.latLng );
-        bound.getCenter();
-        tmpMap.fitBounds( bound );
-        //map.fitBounds(bound);
-
-        //Add values to Firebase
-        addPlace( 'place', {'lat': e.latLng.lat(), 'long': e.latLng.lng() } );
- */
+        
     } ); //end of the function listener
 
     
@@ -268,6 +220,13 @@ function editPlaceModalClose() {
 
 }
 
+//A callback function that is called when the dropdown button for selecting user is closed
+function selectUserClose() {
+    //console.log( $('#selectUserAdmin') );
+}
+
+/* ----------------------------------------------------------------------- */
+
 //start manipulating the DOM
 $(document).ready( function(){
 
@@ -290,6 +249,11 @@ $(document).ready( function(){
         constrainWidth: false,
         coverTrigger: false
     } );
+    $('#ddSelectUserAdmin').dropdown({
+        constrainWidth: false,
+        coverTrigger: false,
+        onCloseEnd: selectUserClose
+    });
 
     //grab DOM element to insert the map
     var adminMap = $('#adminMap');
@@ -307,8 +271,7 @@ $(document).ready( function(){
     //Registering onclick event for adding user
     $( addUserBtnId ).click( addUserBtnClick );
 
-    //Registering onclick event for adding ticket
-    $( addTicketBtnId ).click( addTicketBtnClick );
+    
 
     //Show the users in a table
     fbPtrDb.ref('users/').on( "child_added", function( snapshot ) {
@@ -327,7 +290,10 @@ $(document).ready( function(){
         $('<td>').text( model ).appendTo( newRow );
         $('<td>').text( tag ).appendTo( newRow );
 
-        $('<li><a href="#!">' + name + '</a></li>').appendTo('#selectUserAdmin');
+        //add users to a dropdown
+        $('<li value="'+name+'"><a href="#!">' + name + '</a></li>').appendTo('#selectUserAdmin');
+
+        //$('<option value="'+name+'">'+name+'</option>').appendTo('#selectUserAdmin');
 
     } );
 
