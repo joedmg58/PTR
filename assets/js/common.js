@@ -29,8 +29,25 @@ firebase.initializeApp(config);
 fbPtrDb = firebase.database();
 console.log( fbPtrDb );
 
+//this function obtain the arguments passed in an url using the request methos GET
+function getUrlArgs() {
+    var args = {};
+    var cuts = window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) { args[key]= value;} );
+    return args;
+}
 
 //start manipulating the DOM
 $(document).ready( function(){
 
+    $('.dropdown-trigger').dropdown();
+
+    //Show the users in a user dropdown button
+    fbPtrDb.ref('users/').on( "child_added", function( snapshot ) {
+
+        var name = snapshot.val().userName;
+
+        $('<li><a href="user.html?user='+name+'">' + name + '</a></li>').appendTo('#dropdown-button1');
+
+    } );
+  
 });
