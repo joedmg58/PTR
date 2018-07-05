@@ -81,36 +81,7 @@ function addPlace( name, coordinates ) {
     fbPtrDb.ref('places/').push( place );
 }
 
-//managing onclick event for addTicket button
-function addTicketBtnClick( e ) {
-    console.log( 'Add ticket button clicked' );
 
-    var place = {
-        name: 'Prueba',
-        coordinates: {'lat':'25.7230019', 'long':'-80.2784722'}
-    }
-
-    var now = moment().format('MM/DD/YYYY hh:mm a');
-
-    addTicket( 'Peter Brown', now , place );
-}
-
-//function for adding ticket
-function addTicket( userName, startDate, place ) {
-    console.log('Adding ticket to user...');
-
-    var ticket = {
-        ticketStartDate: startDate,
-        ticketStopDate: '',
-        ticketPlace: place,
-        ticketRate: '',         //obtain this value from parking API
-        ticketAproved: 'false',
-        ticketPreAproved: 'false'
-    }
-
-
-    fbPtrDb.ref( 'tickets/'+userName+'/' ).push( ticket );
-}
 
 //managing oclick venet for get location button
 function getLocationBtnClick() {
@@ -178,23 +149,12 @@ function showPosition( position ) {
     tmpMap.addListener('click', function( e ) {
         console.log( e.latLng.lat() + ', ' + e.latLng.lng() );
 
-        //Create and show marker
-        var marker = new google.maps.Marker({
-            position: e.latLng,
-            map: tmpMap, //map,
-            title: 'place',
-            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png', //'assets/images/jobsite.png',
-            animation: google.maps.Animation.DROP
+        $('#addPlaceModal').modal( 'open' );
+
+        $('#addPlaceModal').attr({
+            lat: e.latLng.lat(),
+            lon: e.latLng.lng()
         });
-
-        //Adjust centering of the map
-        bound.extend( e.latLng );
-        bound.getCenter();
-        tmpMap.fitBounds( bound );
-        //map.fitBounds(bound);
-
-        //Add values to Firebase
-        addPlace( 'place', {'lat': e.latLng.lat(), 'long': e.latLng.lng() } );
 
     } ); //end of the function listener
 
@@ -219,14 +179,81 @@ function showError( error ) {
     }
 }
 
+//A callback function that is called when a addPlaceModal dialog is closed
+function addPlaceModalClose() {
+    console.log( 'addPlaceModal is closed' );
+    console.log( $('#addPlaceModal').attr('result') );
+    if ( $('#addPlaceModal').attr('result') == 'ok' ) {
+        var lat = $('#addPlaceModal').attr('lat');
+        var lon = $('#addPlaceModal').attr('lon');
+        var placeName = $('#placeNameModal').val();
+        var latlon = new google.maps.LatLng( lat, lon );
+
+        //Create and show marker
+        var marker = new google.maps.Marker({
+            position: latlon,
+            map: tmpMap,
+            title: placeName,
+            icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png', //'assets/images/jobsite.png',
+            animation: google.maps.Animation.DROP
+        });
+
+        marker.addListener('click', function() {
+            //show popup menu to delete or edit a marker (place)
+            console.log( this.tile );
+        });
+
+        //Adjust centering of the map
+        bound.extend( latlon );
+        bound.getCenter();
+        tmpMap.fitBounds( bound );
+        //map.fitBounds(bound);
+
+        //Add values to Firebase
+        addPlace( placeName, {'lat': lat, 'long': lon } );
+
+    }
+}
+
+//A callback function that is called when a editPlaceModal dialog is closed
+function editPlaceModalClose() {
+
+}
+
+//A callback function that is called when the dropdown button for selecting user is closed
+function selectUserClose() {
+    //console.log( $('#selectUserAdmin') );
+}
+
+/* ----------------------------------------------------------------------- */
 
 //start manipulating the DOM
 $(document).ready( function(){
 
     //materialize initializations
+    //Tabs
     $('.tabs').tabs(); // for using tabs
+
+    //MOdals
     $('.modal').modal(); //for using modals
+    $('#addPlaceModal').modal( {
+        onCloseEnd: addPlaceModalClose
+    } ); //registering an onclose event for add place modal
+    $('#editPlaceModal').modal(  {
+        onCloseEnd: editPlaceModalClose
+    } );
+
+    //Dropdowns
     $('.dropdown-trigger').dropdown(); //for dropdowns
+    $('#ddSelectUser').dropdown( {
+        constrainWidth: false,
+        coverTrigger: false
+    } );
+    $('#ddSelectUserAdmin').dropdown({
+        constrainWidth: false,
+        coverTrigger: false,
+        onCloseEnd: selectUserClose
+    });
 
     //grab DOM element to insert the map
     var adminMap = $('#adminMap');
@@ -244,8 +271,7 @@ $(document).ready( function(){
     //Registering onclick event for adding user
     $( addUserBtnId ).click( addUserBtnClick );
 
-    //Registering onclick event for adding ticket
-    $( addTicketBtnId ).click( addTicketBtnClick );
+
 
     //Show the users in a table
     fbPtrDb.ref('users/').on( "child_added", function( snapshot ) {
@@ -264,6 +290,11 @@ $(document).ready( function(){
         $('<td>').text( model ).appendTo( newRow );
         $('<td>').text( tag ).appendTo( newRow );
 
+        //add users to a dropdown
+        $('<li value="'+name+'"><a href="#!">' + name + '</a></li>').appendTo('#selectUserAdmin');
+
+        //$('<option value="'+name+'">'+name+'</option>').appendTo('#selectUserAdmin');
+
     } );
 
     //Show the jobsites in map
@@ -278,6 +309,14 @@ $(document).ready( function(){
             icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
             title: snapshot.val().placeName,
             animation: google.maps.Animation.DROP
+        });
+
+        //registering right click event for markers
+        marker.addListener('rightclick', function() {
+            console.log( this.title );
+            //show a modal menu to delete or edit a marker (place)
+            $('#placeEditModal').val( this.title );
+            $('#editPlaceModal').modal( 'open' );
         });
 
         markers.push( marker );
