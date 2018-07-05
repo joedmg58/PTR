@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>PTR | Admin Page</title>
+  <title>PTR | Admin</title>
 
   <!--Import Google Icon Font for materialize-->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -17,20 +17,28 @@
 
 <body>
 
-  <div class="container">
-    <div class="row">
-      <!-- Navigation tabs -->
-      <div class="col s12">
-        <ul class="tabs" id="tab-color">
+
+  <!--Navbar-->
+  <nav>
+    <div class="nav-wrapper blue">
+      <a href="tabs" class="brand-logo blue"><i class="material-icons">directions_car</i>Parking Ticket Reimbursement</a>
+        <ul class="right hide-on-med-and-down blue">
           <li class="tab col 3"><a href="#users">Registered Employees</a></li>
           <li class="tab col 3"><a href="#tickets">Reimbursement</a></li>
-          <li class="tab col 3"><a href="#places">Job Sites</a></li>
+          <li class="tab col 3"><a href="#places" class="active">Job Sites</a></li>
         </ul>
-      </div>
+    </div>
+  </nav>
+
+
+
+
+  <div class="container ">
+    <div class="row">
 
       <!-- User tab -->
       <div id="users" class="col s12">
-        <div class="card">
+        <div class="card blue lighten-5">
           <div class="card-content">
             <span class="card-title responsive-table" id="userName"><strong>Employees:</strong></span>
             <table>
@@ -43,8 +51,8 @@
                 </tr>
               </thead>
               <!-- Table Body -->
-              <tbody>
-                <tr>
+              <tbody id="tbUsers">
+                <!-- <tr>
                   <td>Joed Machado Gonzalez</td>
                   <td>Electrician</td>
                   <td><a class="waves-effect waves-light btn">View Auto Info</a></td>
@@ -63,11 +71,11 @@
                   <td>Joseph Ragno</td>
                   <td>Title</td>
                   <td><a class="waves-effect waves-light btn">View Auto Info</a></td>
-                </tr>
+                </tr> -->
               </tbody>
             </table>
             <!-- Triggers modal to add an employee -->
-            <a class="waves-effect waves-light btn modal-trigger m2" id="admin_add_btn" href="#addUserModal">Add Employee</a>
+            <a class="blue waves-effect waves-light z-depth-2 btn-large modal-trigger m2" id="admin_add_btn" href="#addUserModal"><i class="material-icons left">add</i>Add Employee</a>
           </div>
         </div>
       </div>
@@ -77,17 +85,17 @@
     <!-- Reimbursement page tab -->
     <div id="tickets" class="col s12">
       <!-- Dropdown -->
-      <ul id='dropdown1' class='dropdown-content'>
-        <li><a href="#!">Employee #1</a></li>
+      <select id='selectUserAdmin' class='dropdown-content'>
+        <!-- <li><a href="#!">Employee #1</a></li>
         <li><a href="#!">Employee #2</a></li>
-        <li><a href="#!">Employee #3</a></li>
-      </ul>
+        <li><a href="#!">Employee #3</a></li> -->
+      </select>
 
-      <div class="card">
+      <div class="card blue lighten-5">
         <div class="card-content">
           <!-- Dropdown trigger for employee selection -->
           <span class="card-title responsive-table" id="userName"><strong>
-            <a class='dropdown-trigger btn' href='#' data-target='dropdown1'>Select An Employee</a>
+            <a id="ddSelectUserAdmin" class='dropdown-trigger btn-large blue waves-effect waves-light z-depth-2' href='#' data-target='selectUserAdmin'><i class="material-icons right">arrow_drop_down</i>Select An Employee</a>
           </strong></span>
           <!-- Table -->
           <table>
@@ -103,8 +111,8 @@
               </tr>
             </thead>
             <!-- Table Body -->
-            <tbody>
-              <tr>
+            <tbody id="tbUserTickets">
+              <!-- <tr>
                 <td>Check-In D&T</td>
                 <td>Check-Out D&T</td>
                 <td>FAU Parking Garage</td>
@@ -127,7 +135,7 @@
                 <td>$3.50/hr</td>
                 <td>2</td>
                 <td>Disapproved</td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
         </div>
@@ -139,9 +147,11 @@
 
     <!-- Location tab -->
     <div id="places" class="col s12">
-      <div id="adminMap"></div>
-      <p>Click on the map to create a Job Site marker</p>
-      <p><a class="waves-effect waves-light btn modal-trigger" href="#addPlaceModal">Add place</a></p>
+        <h5>Click on the map to create a Job Site marker</h5>
+        <h6>(right click on the marker to edit or delete it)</h6>
+        <div id="adminMap"></div>
+
+        <!-- <p><a class="waves-effect waves-light btn modal-trigger" href="#addPlaceModal">Add place</a></p> -->
     </div>
     <!-- End of location tab -->
 
@@ -180,50 +190,41 @@
       </div>
       <!-- Modal Footer -->
       <div class="modal-footer">
-        <a class="btn-floating btn-large waves-effect waves-light green"><i class="material-icons">Add</i></a>
+        <a id="addUserBtn" class="btn-floating btn-large waves-effect waves-light modal-close"><i class="material-icons">add</i></a>
+
+        <!-- <button id="addUserBtn" type="button" class="btn-floating modal-close"><i class="material-icons">add</i></button> -->
       </div>
     </form>
   </div>
   <!-- end of modal add user -->
 
-  <!--
-  <div id="addUserModal" class="modal">
-    <form class="modal-content">
-      <h4>Employee Automobile Information:</h4>
-      <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
-          <input placeholder="First and Last Name" id="user_name" type="text" class="validate">
-          <label for="user_name">User Name</label>
+   <!-- Modal for editing / deleting places (markers) -->
+   <div id="editPlaceModal" class="modal" result="cancel" place-name="">
+        <div class="modal-content">
+            <h3>Edit or delete this place</h3>
+            <label for="placeEditModal">Job site name</label>
+            <input id="placeEditModal" type="text">
         </div>
-        <div class="input-field col s6">
-          <input placeholder="Title" id="user_title" type="text" class="validate">
-          <label for="user_title">User Title</label>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="$('#editPlaceModal').attr('result', 'cancel')">Cancel</a>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="$('#editPlaceModal').attr('result', 'delete')">Delete</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="$('#editPlaceModal').attr('result', 'ok')">Modify</a>
         </div>
-      </div>
+    </div> <!-- end of modal for editing places -->
 
-      <div class="row">
-        <div class="input-field col s4">
-          <i class="material-icons prefix">directions_car</i>
-          <input id="user_carMake" type="text" class="validate">
-          <label for="user_carMake">Car make</label>
-        </div>
-        <div class="input-field col s4">
-          <input id="user_carModel" type="text" class="validate">
-          <label for="user_carModel">Car model</label>
-        </div>
-        <div class="input-field col s4">
-          <input id="user_carTag" type="text" class="validate" data-length="6">
-          <label for="user_carTag">Car tag</label>
-        </div>
-      </div>
 
-      <div class="modal-footer">
-        <button id="addUserBtn" type="button" class="btn-floating modal-close"><i class="material-icons">Add</i></button>
-      </div>
-    </form>
-  </div>
-  -->
+    <!-- Modal dlg for adding places -->
+    <div id="addPlaceModal" class="modal" result="cancel" lat="" lon="">
+        <div class="modal-content">
+            <label for="placeNameModal">Job site name</label>
+            <input id="placeNameModal" type="text">
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat" onclick="$('#addPlaceModal').attr('result', 'cancel')">Cancel</a>
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="$('#addPlaceModal').attr('result', 'ok')">Add</a>
+        </div>
+    </div> <!-- end of addPlaceModal -->
+
 
   <!-- Modal for naming places on locations page -->
   <div id="addPlaceModal" class="modal">
@@ -237,25 +238,6 @@
     </div>
   </div>
   <!-- End of location modal" -->
-
-
-
-  <!-- <div>
-        <button id="addPlaceBtn" type="button">Add place</button>
-    </div> -->
-
-  <!-- <div>
-        <button id="addTicketBtn" type="button">Add ticket</button>
-    </div>
- -->
-  <!-- <div>
-        <button id="getLocation" type="button">Get Location</button>
-    </div> -->
-
-  <!-- <div id="mapHolder"></div> -->
-
-
-
 
 
   <!-- JQuery -->
