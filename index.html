@@ -4,67 +4,81 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <!-- Link to CSS Sheet -->
-  <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Link to Materialize -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-  <title>PTR</title>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection"/>
+  <!-- Compiled and minified JavaScript -->
+  <script type = "text/javascript"
+    src = "https://code.jquery.com/jquery-2.1.1.min.js"></script>           
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
+  </script> 
+  <title>PTR | Index Page</title>
 </head>
 <body>
 
-  <!--User/Admin Login drop down menu (pulling from database)-->
+    <!--Navbar-->
+    <nav class="blue">
+      <div class="navbar-wrapper container z-depth-2">
+
+      
+        <a href="#" class="brand-logo "><i class="material-icons left">directions_car</i>Parking Ticket Reimbursement</a>
+
+      </div>
+  </nav>
+
 
   <div class="container">
     
-    <!--buttton content-->
-
-    <!--login header-->
     <div class="row">
-      <div class="col-lg-12">
-        <div class="card" style="background-color: red; color: white;">
-          <strong>Login</strong>
+      <div class="card fit z-depth-4">
+        <div class="card-image">
+          <img src="assets/images/parking.jpeg">
+          <span class="card-title"><h1>User Login</h1></span>
         </div>
       </div>
     </div>
+    <div class="row">
+      <div class="col s12 m12 l12 center-align ">
+                  
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-button btn-large blue waves-effect waves-light z-depth-4' href='#' data-target='dropdown-button1'><i class="material-icons left">account_circle</i>Users</a>    
 
+        <a class='dropdown-button btn-large blue waves-effect waves-light z-depth-4' href='#' data-target='dropdown-button'><i class="material-icons left">account_circle</i>Admins</a>  
 
-    <!-- Dropdown Trigger -->
-    <a class='dropdown-trigger btn' href='#' data-target='userDrop'>Users</a>
-
-    <!--Users Button-->
-    <div class ="form-group">
-
-      <!-- Dropdown Structure -->
-      <ul id='userDrop' class='dropdown-content'>
-        <li><a href="#!"><i class="material-icons">account_box</i>User1</a></li>
-        <li><a href="#!"><i class="material-icons">account_box</i>User2</a></li>
-        <li><a href="#!"><i class="material-icons">account_box</i>User3</a></li>
-        </ul>
-
+      </div>
     </div>
-
-    <!--Admin Button-->
-    <div class ="form-group
-    ">
-
-      <!-- Dropdown Structure -->
-      <ul id='userDrop' class='dropdown-content'>
-        <li><a href="#!"><i class="material-icons">account_box</i>Admin1</a></li>
-        <li><a href="#!"><i class="material-icons">account_box</i>Admin2</a></li>
-      </ul>
-    
-    </div>
-    
-
-    
-
   </div>
 
 
 
+  <!-- Dropdown Structure for User -->
+  <ul id='dropdown-button1' class='dropdown-content'>      
+    <li><a href="user.html"><i class="material-icons">account_circle</i>User1</a></li>
+    <li><a href="user.html"><i class="material-icons">account_circle</i>User2</a></li>
+    <li><a href="user.html"><i class="material-icons">account_circle</i>User3</a></li>
+  </ul>
 
-  <!-- Link to JS Sheet -->
-  <script type="text/javascript" src="assets/js/app.js"></script>
+  <!--Dropdown for admin-->
+
+  <ul id='dropdown-button' class='dropdown-content'>      
+      <li><a href="admin.html"><i class="material-icons">account_circle</i>Admin1</a></li>
+      <li><a href="admin.html"><i class="material-icons">account_circle</i>Admin2</a></li>
+  </ul>
+
+  
+  <script>
+    $('.dropdown-button').dropdown();
+  </script>
+  
+
+
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+
+
+
+
   <!-- Link to jQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <!-- Moment JS -->
