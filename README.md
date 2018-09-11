@@ -5,6 +5,6 @@ Parking Ticket Reinbursement (PTR) is a simple system to get track of your parki
 This project has 3 constributors: Joe Ragno, Jose de las Salas and Joed Machado.
 
 We use technologies such as:
-  *JQuery
-  *Materialize
-  *Google Map API
+  * JQuery
+  * Materialize
+  * Google Map API
